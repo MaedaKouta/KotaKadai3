@@ -20,21 +20,11 @@ class ViewController: UIViewController {
     @IBAction private func didTapButton(_ sender: Any) {
         let leftBeforeNum = Int(leftTextField.text ?? "") ?? 0
         let rightBeforeNum = Int(rightTextField.text ?? "") ?? 0
-        let leftAfterNum = changeValue(num: leftBeforeNum, isMinus: leftSwitch.isOn)
-        let rightAfterNum = changeValue(num: rightBeforeNum, isMinus: rightSwitch.isOn)
+        let leftAfterNum = leftSwitch.isOn ? -leftBeforeNum : leftBeforeNum
+        let rightAfterNum = rightSwitch.isOn ? -rightBeforeNum : rightBeforeNum
 
         leftTextLabel.text = String(leftAfterNum)
         rightTextLabel.text = String(rightAfterNum)
         resultTextLabel.text = String(leftAfterNum + rightAfterNum)
     }
-
-    // UISwitchにあわせて符号を変換する
-    private func changeValue(num: Int, isMinus: Bool) -> Int {
-        if isMinus {
-            return -num
-        } else {
-            return num
-        }
-    }
-
 }
